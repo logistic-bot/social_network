@@ -1,3 +1,6 @@
+from os import listdir
+
+
 class User:
     def __init__(self, username):
         self.username = username
@@ -40,6 +43,10 @@ class User:
                 exit()
 
 
+def get_all_users():
+    return listdir("./data/")
+
+
 def main():
     username = input("Username: ")
     password = input("Password: ")
@@ -56,6 +63,11 @@ def main():
         elif action == "pg": # post global
             with open("./messages/global.txt", "a") as messages:
                 messages.write("<" + u.username + "> " + input("$> ") + "\n")
+
+        elif action == "lu": # list users
+            users = get_all_users()
+            for user in users:
+                print(user[:-9])
 
 
 if __name__ == "__main__":
