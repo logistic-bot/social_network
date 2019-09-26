@@ -69,6 +69,9 @@ def main():
             for user in users:
                 print(user[:-9])
 
+        else:
+            print("Unkown command, type `h` for a list of commands")
+
 
 if __name__ == "__main__":
     main()
