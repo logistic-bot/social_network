@@ -4,6 +4,20 @@ from os import listdir
 class User:
     def __init__(self, username):
         self.username = username
+        self.subscribed_to = []
+
+    def subscribe(self, username):
+        """
+        subscribes self to username, allowing self to recive notifications about username's posts
+        """
+        if username in self.subscribed_to:
+            print("You are already subscribed to this person")
+        else:
+            if username in get_all_users():
+                self.subscribed_to.append(username)
+            else:
+                print("Username does not exist")
+        return 0
 
     def ask_yes_no(self):
         got_response = False
@@ -44,7 +58,15 @@ class User:
 
 
 def get_all_users():
-    return listdir("./data/")
+    users = listdir("./data/")
+    new_users = []
+
+    for user in users:
+        if user.endswith(".password"):
+            user = user.split(sep=".")[0]
+            new_users.append(user)
+
+    return new_users
 
 
 def main():
@@ -71,11 +93,15 @@ def main():
         elif action == "lu": # list users
             users = get_all_users()
             for user in users:
-                print(user[:-9])
+                print(user)
 
         elif action == "rp": # read personal messages
             with open("./data/" + username + ".posts", "r") as messages:
                 print(messages.read())
+
+        elif action == "s": # subscribe
+            subscribe_to = input("%> ")
+            u.subscribe(subscribe_to)
 
         elif action == "h":
             help = ["You typed h, the help character",
@@ -86,11 +112,13 @@ def main():
                     "\tpg\tPost a global message",
                     "\tpp\tPost a personal message",
                     "\tlu\tList all users",
+                    "\ts\tSubscribe to an user",
                     "\th\tShow this help message",
                     "",
                     "Here is a list of prompts:",
                     "\t` > `\tWaiting for command",
-                    "\t`$> `\tWaiting for message"]
+                    "\t`$> `\tWaiting for message",
+                    "\t`%> `\tWaiting for username"]
 
             for h in help:
                 print(h)
