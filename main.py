@@ -66,7 +66,7 @@ def main():
 
         elif action == "pp": # post personal
             with open("./data/" + u.username + ".posts", "a") as messages:
-                messages.write(input("$> "))
+                messages.write(input("$> ") + "\n")
 
         elif action == "lu": # list users
             users = get_all_users()
