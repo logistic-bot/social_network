@@ -73,11 +73,16 @@ def main():
             for user in users:
                 print(user[:-9])
 
+        elif action == "rp": # read personal messages
+            with open("./data/" + username + ".posts", "r") as messages:
+                print(messages.read())
+
         elif action == "h":
             help = ["You typed h, the help character",
                     "",
                     "Here is a list of commands:",
                     "\trg\tRead global messages",
+                    "\trp\tRead my personal messages",
                     "\tpg\tPost a global message",
                     "\tpp\tPost a personal message",
                     "\tlu\tList all users",
