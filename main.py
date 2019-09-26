@@ -5,6 +5,28 @@ class User:
     def __init__(self, username):
         self.username = username
         self.subscribed_to = []
+        self.load_subscriptions()
+
+    def load_subscriptions(self):
+        """
+        load subscriptions from file
+        """
+        with open("./data/" + self.username + ".sub", "r") as sub:
+            subs = sub.read()
+
+        subs = subs.split(sep="\n")
+        for s in subs:
+            if not s == "":
+                self.subscribe(s)
+
+    def save_subscriptions(self):
+        """
+        saves subscrtions to file
+        """
+        with open("./data/" + self.username + ".sub", "w") as sub:
+            for s in self.subscribed_to:
+                sub.write(s)
+                sub.write("\n")
 
     def subscribe(self, username):
         """
@@ -16,7 +38,7 @@ class User:
             if username in get_all_users():
                 self.subscribed_to.append(username)
             else:
-                print("Username does not exist")
+                print("Username {} does not exist".format(username))
         return 0
 
     def ask_yes_no(self):
@@ -103,6 +125,10 @@ def main():
             subscribe_to = input("%> ")
             u.subscribe(subscribe_to)
 
+        elif action == "q": # quit
+            u.save_subscriptions()
+            exit()
+
         elif action == "h":
             help = ["You typed h, the help character",
                     "",
@@ -114,6 +140,7 @@ def main():
                     "\tlu\tList all users",
                     "\ts\tSubscribe to an user",
                     "\th\tShow this help message",
+                    "\tq\tQuit",
                     "",
                     "Here is a list of prompts:",
                     "\t` > `\tWaiting for command",
