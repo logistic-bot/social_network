@@ -79,6 +79,7 @@ def main():
                     "Here is a list of commands:",
                     "\trg\tRead global messages",
                     "\tpg\tPost a global message",
+                    "\tpp\tPost a personal message",
                     "\tlu\tList all users",
                     "\th\tShow this help message",
                     "",
