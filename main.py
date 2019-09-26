@@ -64,6 +64,10 @@ def main():
             with open("./messages/global.txt", "a") as messages:
                 messages.write("<" + u.username + "> " + input("$> ") + "\n")
 
+        elif action == "pp": # post personal
+            with open("./data/" + u.username + ".posts", "a") as messages:
+                messages.write(input("$> "))
+
         elif action == "lu": # list users
             users = get_all_users()
             for user in users:
@@ -81,6 +85,7 @@ def main():
                     "Here is a list of prompts:",
                     "\t` > `\tWaiting for command",
                     "\t`$> `\tWaiting for message"]
+
             for h in help:
                 print(h)
 
