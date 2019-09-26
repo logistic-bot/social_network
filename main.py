@@ -69,6 +69,21 @@ def main():
             for user in users:
                 print(user[:-9])
 
+        elif action == "h":
+            help = ["You typed h, the help character",
+                    "",
+                    "Here is a list of commands:",
+                    "\trg\tRead global messages",
+                    "\tpg\tPost a global message",
+                    "\tlu\tList all users",
+                    "\th\tShow this help message",
+                    "",
+                    "Here is a list of prompts:",
+                    "\t` > `\tWaiting for command",
+                    "\t`$> `\tWaiting for message"]
+            for h in help:
+                print(h)
+
         else:
             print("Unkown command, type `h` for a list of commands")
 
