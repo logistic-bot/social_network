@@ -129,12 +129,17 @@ def main():
             u.save_subscriptions()
             exit()
 
+        elif action == "rs": # read subscriptions
+            with open("./data/" + u.username + ".feed", "r") as feed:
+                print(feed.read())
+
         elif action == "h":
             help = ["You typed h, the help character",
                     "",
                     "Here is a list of commands:",
                     "\trg\tRead global messages",
                     "\trp\tRead my personal messages",
+                    "\trs\tRead subscriptions",
                     "\tpg\tPost a global message",
                     "\tpp\tPost a personal message",
                     "\tlu\tList all users",
